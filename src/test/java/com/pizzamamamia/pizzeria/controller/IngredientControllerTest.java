@@ -1,12 +1,8 @@
 package com.pizzamamamia.pizzeria.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pizzamamamia.pizzeria.controller.dto.CustomerDto;
 import com.pizzamamamia.pizzeria.controller.dto.IngredientDto;
 import com.pizzamamamia.pizzeria.service.IngredientService;
-import com.pizzamamamia.pizzeria.service.OrderService;
-import com.pizzamamamia.pizzeria.testUtils.TestCustomerDataUtil;
 import com.pizzamamamia.pizzeria.testUtils.TestIngredientDataUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +14,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
 
-import static com.pizzamamamia.pizzeria.testUtils.TestCustomerDataUtil.*;
+import static com.pizzamamamia.pizzeria.testUtils.TestCustomerDataUtil.MOCK_ID;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(value = IngredientController.class)
 @AutoConfigureMockMvc
@@ -105,4 +100,5 @@ public class IngredientControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
+
 }
