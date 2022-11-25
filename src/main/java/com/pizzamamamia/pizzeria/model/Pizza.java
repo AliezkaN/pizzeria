@@ -23,7 +23,7 @@ public class Pizza {
     private String name;
     @Transient
     private BigDecimal price;
-    @OneToMany
+    @ManyToMany
     private List<Ingredient> ingredients;
 
     public BigDecimal getPrice() {

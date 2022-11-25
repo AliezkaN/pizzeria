@@ -11,6 +11,7 @@ insert into customers (id,email,first_name,last_name,phone,address_line) values 
 insert into ingredients (id,name,price) values (default,'Bechamel sauce',35);
 insert into ingredients (id,name,price) values (default,'Mozzarella',60);
 insert into ingredients (id,name,price) values (default,'Chicken',45);
+insert into ingredients (id,name,price) values (default,'Ham',55);
 
 -- -----------------------------------------------------
 -- Data for table pizza
