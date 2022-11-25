@@ -40,31 +40,31 @@ public class CustomerController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public CustomerDto createUser(@RequestBody @Validated(OnCreate.class) CustomerDto customerDto){
-        log.info("createUser with email {}", customerDto.getEmail());
+    public CustomerDto createCustomer(@RequestBody @Validated(OnCreate.class) CustomerDto customerDto){
+        log.info("createCustomer with email {}", customerDto.getEmail());
         return customerService.createCustomer(customerDto);
     }
 
     @PatchMapping(value = "/{email}")
-    public CustomerDto updateUser(@PathVariable String email,
-                                  @RequestBody @Validated(OnUpdate.class) CustomerDto customerDto){
-        log.info("updateUser with email {}", email);
+    public CustomerDto updateCustomer(@PathVariable String email,
+                                      @RequestBody @Validated(OnUpdate.class) CustomerDto customerDto){
+        log.info("updateCustomer with email {}", email);
         return customerService.updateCustomer(email, customerDto);
     }
 
     @DeleteMapping(value = "/{email}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String email){
+    public ResponseEntity<Void> deleteCustomer(@PathVariable String email){
         log.info("deleteCustomer with email {}", email);
         customerService.deleteCustomer(email);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{email}/createOrder/{pizzaId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("{email}/createOrder/{pizzaId}")
     public OrderDto createOrder(@PathVariable String email, @PathVariable Long pizzaId){
         log.info("createOrder with customer with email {} and pizza with id {}", email,pizzaId);
         return orderService.createOrder(email,pizzaId);
     }
-
 
     @GetMapping(value = "/{email}/showCart")
     public List<OrderDto> showCart(@PathVariable String email){

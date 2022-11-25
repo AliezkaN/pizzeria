@@ -39,4 +39,12 @@ public class TestCustomerDataUtil {
                 .build();
     }
 
+    public static CustomerDto createUpdatedCustomerDto() {
+        return CustomerDto.builder()
+                .firstName(MOCK_UPDATE_FIRST_NAME)
+                .lastName(MOCK_UPDATE_LAST_NAME)
+                .addressLine(MOCK_UPDATE_ADDRESS)
+                .build();
+    }
+
 }
