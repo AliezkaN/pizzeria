@@ -1,9 +1,11 @@
 package com.pizzamamamia.pizzeria.controller;
 
 import com.pizzamamamia.pizzeria.controller.dto.CustomerDto;
+import com.pizzamamamia.pizzeria.controller.dto.OrderDto;
 import com.pizzamamamia.pizzeria.controller.validation.group.OnCreate;
 import com.pizzamamamia.pizzeria.controller.validation.group.OnUpdate;
 import com.pizzamamamia.pizzeria.service.CustomerService;
+import com.pizzamamamia.pizzeria.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final OrderService orderService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
@@ -54,6 +57,28 @@ public class CustomerController {
         log.info("deleteCustomer with email {}", email);
         customerService.deleteCustomer(email);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("{email}/createOrder/{pizzaId}")
+    public OrderDto createOrder(@PathVariable String email, @PathVariable Long pizzaId){
+        log.info("createOrder with customer with email {} and pizza with id {}", email,pizzaId);
+        return orderService.createOrder(email,pizzaId);
+    }
+
+
+    @GetMapping(value = "/{email}/showCart")
+    public List<OrderDto> showCart(@PathVariable String email){
+        return orderService.getCartedOrders(email);
+    }
+
+    @GetMapping(value = "/{email}/showOrderHistory")
+    public List<OrderDto> showOrderHistory(@PathVariable String email){
+        return orderService.getOrders(email);
+    }
+
+    @GetMapping(value = "/{email}/getCreatedOrders")
+    public List<OrderDto> getCreatedOrders(@PathVariable String email){
+        return orderService.getCreatedOrders(email);
     }
 
 }
