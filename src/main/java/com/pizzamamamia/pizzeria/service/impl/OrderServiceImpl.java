@@ -7,10 +7,9 @@ import com.pizzamamamia.pizzeria.repository.CustomerRepository;
 import com.pizzamamamia.pizzeria.repository.IngredientRepository;
 import com.pizzamamamia.pizzeria.repository.OrderRepository;
 import com.pizzamamamia.pizzeria.repository.PizzaRepository;
-import com.pizzamamamia.pizzeria.service.CustomerService;
 import com.pizzamamamia.pizzeria.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -31,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto createOrder(String email, Long pizzaId) {
+        log.info("OrderService --> createOrder with customer with email{} and pizza with id", pizzaId);
 
         Customer customer = customerRepository.findByEmail(email).orElseThrow(CustomerNotFoundException::new);
         Pizza pizza = pizzaRepository.findById(pizzaId).orElseThrow(PizzaNotFoundException::new);
@@ -52,6 +53,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getOrders(String email) {
+        log.info("OrderService --> get all Orders with customer with email{}",email);
         Customer customer = customerRepository.findByEmail(email).orElseThrow(CustomerNotFoundException::new);
         List<Order> orders = orderRepository.findAllByCustomer(customer);
         return mapListOfOrdersToOrdersDto(orders);
@@ -59,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getCreatedOrders(String email) {
+        log.info("OrderService --> get all created Orders by customer with email{}",email);
         Customer customer = customerRepository.findByEmail(email).orElseThrow(CustomerNotFoundException::new);
         List<Order> orders = orderRepository.findAllByCustomerAndStatus(customer,Status.CREATED);
         return mapListOfOrdersToOrdersDto(orders);
@@ -66,6 +69,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto addTopping(Long orderId, Long ingredientId) {
+        log.info("OrderService --> add topping to pizza by orderId ({}) and ingredientId ({})",orderId, ingredientId);
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         Ingredient ingredient = ingredientRepository.findById(ingredientId).orElseThrow(IngredientNotFoundException::new);
 
@@ -90,6 +94,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto deleteTopping(Long orderId, Long ingredientId) {
+        log.info("OrderService --> delete topping from pizza by orderId ({}) and ingredientId ({})",orderId, ingredientId);
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
         Ingredient ingredient = ingredientRepository.findById(ingredientId).orElseThrow(IngredientNotFoundException::new);
 
@@ -113,6 +118,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto addOrderToCart(Long orderId) {
+        log.info("OrderService --> add order to cart by orderId ({})",orderId);
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
 
         Status status = order.getStatus();
@@ -133,6 +139,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto deleteOrderFromCart(Long orderId) {
+        log.info("OrderService --> delete order from cart by orderId ({})",orderId);
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
 
         Status status = order.getStatus();
@@ -153,6 +160,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto confirmOrder(Long orderId) {
+        log.info("OrderService --> confirm order by orderId ({})",orderId);
         Order order = orderRepository.findById(orderId).orElseThrow(OrderNotFoundException::new);
 
         Status status = order.getStatus();
@@ -173,6 +181,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getCartedOrders(String email) {
+        log.info("OrderService --> get all carted orders");
         Customer customer = customerRepository.findByEmail(email).orElseThrow(CustomerNotFoundException::new);
         List<Order> orders = orderRepository.findAllByCustomerAndStatus(customer,Status.CARTED);
         return mapListOfOrdersToOrdersDto(orders);

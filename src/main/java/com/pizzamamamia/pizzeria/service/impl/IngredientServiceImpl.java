@@ -1,6 +1,5 @@
 package com.pizzamamamia.pizzeria.service.impl;
 
-import com.pizzamamamia.pizzeria.controller.dto.CustomerDto;
 import com.pizzamamamia.pizzeria.controller.dto.IngredientDto;
 import com.pizzamamamia.pizzeria.exception.IngredientNotFoundException;
 import com.pizzamamamia.pizzeria.model.Ingredient;

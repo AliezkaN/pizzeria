@@ -31,16 +31,19 @@ public class OrderController {
 
     @PatchMapping(value = "/{orderId}/addOrderToCart")
     public OrderDto addOrderToCart(@PathVariable Long orderId){
+        log.info("add order to cart by orderId ({})", orderId);
         return orderService.addOrderToCart(orderId);
     }
 
     @PatchMapping(value = "/{orderId}/deleteOrderFromCart")
     public OrderDto deleteOrderFromCart(@PathVariable Long orderId){
+        log.info("delete order from cart by orderId ({})", orderId);
         return orderService.deleteOrderFromCart(orderId);
     }
 
     @PatchMapping(value = "/{orderId}/confirmOrder")
     public OrderDto confirmOrder(@PathVariable Long orderId){
+        log.info("confirm order by orderId ({})", orderId);
         return orderService.confirmOrder(orderId);
     }
 }
