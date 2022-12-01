@@ -109,7 +109,7 @@ public class PizzaControllerTest {
         PizzaDto emptyPizza = TestPizzaDataUtil.createPizzaDto();
         emptyPizza.getIngredients().clear();
         PizzaDto expectedPizza = TestPizzaDataUtil.createPizzaDto();
-        expectedPizza.getIngredients().add(TestIngredientDataUtil.createIngredient());
+        expectedPizza.getIngredients().add(TestIngredientDataUtil.createIngredientDto());
         when(pizzaService.addIngredient(MOCK_ID,MOCK_ID)).thenReturn(expectedPizza);
 
         mockMvc.perform(patch(MAPPING + MOCK_ID + "/addIngredient/" + MOCK_ID))

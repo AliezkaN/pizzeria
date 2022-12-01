@@ -138,7 +138,7 @@ public class PizzaServiceImplTest {
         PizzaDto pizzaDto = pizzaService.addIngredient(MOCK_ID,MOCK_ID);
 
         //then
-        List<Ingredient> ingredientList = pizzaDto.getIngredients();
+        List<IngredientDto> ingredientList = pizzaDto.getIngredients();
         assertThat(ingredientList,hasSize(1));
         assertThat(ingredientList.get(0),allOf(
                 hasProperty("name",equalTo(ingredient.getName())),

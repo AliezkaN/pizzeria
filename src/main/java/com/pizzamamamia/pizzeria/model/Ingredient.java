@@ -1,14 +1,15 @@
 package com.pizzamamamia.pizzeria.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
-@Data
+@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +21,8 @@ public class Ingredient {
     private Long id;
     private String name;
     private BigDecimal price;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(mappedBy = "ingredients",fetch = FetchType.LAZY)
+    private List<Pizza> pizzas;
 }

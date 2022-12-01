@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.pizzamamamia.pizzeria.service.mappers.IngredientToIngredientDtoMapper.mapIngredientToIngredientDto;
+import static com.pizzamamamia.pizzeria.service.mappers.IngredientToIngredientDtoMapper.mapListOfIngredientsToIngredientsDto;
+import static com.pizzamamamia.pizzeria.service.mappers.PizzaToPizzaDtoMapper.mapPizzaToPizzaDto;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -190,10 +194,10 @@ public class OrderServiceImpl implements OrderService {
     private OrderDto mapOrderToOrderDto(Order order){
         return OrderDto.builder()
                 .id(order.getId())
-                .pizza(order.getPizza())
+                .pizza(mapPizzaToPizzaDto(order.getPizza()))
                 .status(order.getStatus())
                 .price(order.getPrice())
-                .toppings(order.getToppings())
+                .toppings(mapListOfIngredientsToIngredientsDto(order.getToppings()))
                 .creationDateTime(order.getCreationDateTime())
                 .modificationDateTime(order.getModificationDateTime())
                 .build();

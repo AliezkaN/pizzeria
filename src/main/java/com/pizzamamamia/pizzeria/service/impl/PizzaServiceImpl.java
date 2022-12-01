@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
+import static com.pizzamamamia.pizzeria.service.mappers.PizzaToPizzaDtoMapper.*;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -85,7 +87,7 @@ public class PizzaServiceImpl implements PizzaService {
         Ingredient ingredient = ingredientRepository.findById(ingredientId).orElseThrow(IngredientNotFoundException::new);
 
         if (Objects.nonNull(pizza.getIngredients()) && pizza.getIngredients().size() != 0){
-           pizza.getIngredients().remove(ingredient);
+            pizza.getIngredients().remove(ingredient);
         }
 
         Pizza storedPizza = pizzaRepository.save(pizza);
@@ -99,28 +101,4 @@ public class PizzaServiceImpl implements PizzaService {
         pizzaRepository.delete(pizza);
     }
 
-
-    private List<PizzaDto> mapListOfPizzaToPizzaDto(List<Pizza> pizzas){
-        return pizzas.stream()
-                .map(pizza -> mapPizzaToPizzaDto(pizza))
-                .collect(Collectors.toList());
-    }
-
-    private PizzaDto mapPizzaToPizzaDto(Pizza pizza) {
-        return PizzaDto.builder()
-                .id(pizza.getId())
-                .name(pizza.getName())
-                .price(pizza.getPrice())
-                .ingredients(pizza.getIngredients())
-                .build();
-    }
-
-    private Pizza mapPizzaDtoToPizza(PizzaDto pizzaDto){
-        return Pizza.builder()
-                .id(pizzaDto.getId())
-                .name(pizzaDto.getName())
-                .price(pizzaDto.getPrice())
-                .ingredients(pizzaDto.getIngredients())
-                .build();
-    }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.pizzamamamia.pizzeria.service.mappers.IngredientToIngredientDtoMapper.*;
+
 @RequiredArgsConstructor
 @Slf4j
 @Service
@@ -70,25 +72,5 @@ public class IngredientServiceImpl implements IngredientService {
         ingredientRepository.delete(ingredient);
     }
 
-    private IngredientDto mapIngredientToIngredientDto(Ingredient ingredient){
-        return IngredientDto.builder()
-                .id(ingredient.getId())
-                .name(ingredient.getName())
-                .price(ingredient.getPrice())
-                .build();
-    }
 
-    private Ingredient mapIngredientDtoToIngredient(IngredientDto ingredientDto){
-        return Ingredient.builder()
-                .id(ingredientDto.getId())
-                .name(ingredientDto.getName())
-                .price(ingredientDto.getPrice())
-                .build();
-    }
-
-    private List<IngredientDto> mapListOfIngredientsToIngredientsDto(List<Ingredient> ingredients){
-        return ingredients.stream()
-                .map( ingredient -> mapIngredientToIngredientDto(ingredient))
-                .collect(Collectors.toList());
-    }
 }

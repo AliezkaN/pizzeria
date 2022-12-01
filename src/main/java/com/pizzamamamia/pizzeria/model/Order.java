@@ -19,24 +19,18 @@ import java.util.Objects;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne
     private Customer customer;
-
     @ManyToOne
     private Pizza pizza;
-
     @ManyToMany
     private List<Ingredient> toppings;
-
     @Enumerated(EnumType.STRING)
     private Status status;
-
     @Transient
     private BigDecimal price;
-
     private LocalDateTime creationDateTime;
     private LocalDateTime modificationDateTime;
 

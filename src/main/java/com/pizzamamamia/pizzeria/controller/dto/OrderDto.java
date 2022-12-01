@@ -20,8 +20,8 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 public class OrderDto {
     @JsonProperty(access = READ_ONLY)
     private Long id;
-    private Pizza pizza;
-    private List<Ingredient> toppings;
+    private PizzaDto pizza;
+    private List<IngredientDto> toppings;
     private Status status;
     private BigDecimal price;
     private LocalDateTime creationDateTime;

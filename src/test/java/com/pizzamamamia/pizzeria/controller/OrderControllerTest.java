@@ -39,7 +39,7 @@ public class OrderControllerTest {
     @Test
     void addToppingToPizzaTest() throws Exception {
         OrderDto expectedOrder = TestOrderDataUtil.createOrderDto();
-        expectedOrder.getToppings().add(TestIngredientDataUtil.createIngredient());
+        expectedOrder.getToppings().add(TestIngredientDataUtil.createIngredientDto());
         when(orderService.addTopping(MOCK_ID,MOCK_ID)).thenReturn(expectedOrder);
 
         mockMvc.perform(patch(MAPPING + MOCK_ID + "/addTopping/" + MOCK_ID))
