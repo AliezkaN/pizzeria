@@ -7,6 +7,7 @@ import com.pizzamamamia.pizzeria.model.Pizza;
 import com.pizzamamamia.pizzeria.model.Status;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.List;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 
 @Data
-@Builder
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto {
     @JsonProperty(access = READ_ONLY)

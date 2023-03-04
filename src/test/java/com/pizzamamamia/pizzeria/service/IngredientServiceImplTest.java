@@ -108,10 +108,9 @@ public class IngredientServiceImplTest {
     void updateIngredientTest(){
         //given
         Ingredient expectedIngredient = TestIngredientDataUtil.createIngredient();
-        IngredientDto updateBody = IngredientDto.builder()
-                                                .name(MOCK_UPDATE_NAME)
-                                                .price(MOCK_UPDATE_PRICE)
-                                                .build();
+        IngredientDto updateBody = new IngredientDto()
+                                                .setName(MOCK_UPDATE_NAME)
+                                                .setPrice(MOCK_UPDATE_PRICE);
         when(ingredientRepository.findById(MOCK_ID)).thenReturn(Optional.of(expectedIngredient));
         when(ingredientRepository.save(any())).thenReturn(expectedIngredient);
 

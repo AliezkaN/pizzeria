@@ -6,6 +6,7 @@ import com.pizzamamamia.pizzeria.controller.validation.group.OnCreate;
 import com.pizzamamamia.pizzeria.model.Ingredient;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
@@ -15,7 +16,7 @@ import java.util.List;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 
 @Data
-@Builder
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PizzaDto {
     @JsonProperty(access = READ_ONLY)

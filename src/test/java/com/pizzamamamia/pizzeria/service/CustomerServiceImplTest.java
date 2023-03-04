@@ -104,11 +104,10 @@ public class CustomerServiceImplTest {
     void updateCustomerTest(){
         //given
         Customer expectedCustomer = TestCustomerDataUtil.createCustomer();
-        CustomerDto updateBody = CustomerDto.builder()
-                                            .firstName(MOCK_UPDATE_FIRST_NAME)
-                                            .lastName(MOCK_UPDATE_LAST_NAME)
-                                            .addressLine(MOCK_UPDATE_ADDRESS)
-                                            .build();
+        CustomerDto updateBody = new CustomerDto()
+                                            .setFirstName(MOCK_UPDATE_FIRST_NAME)
+                                            .setLastName(MOCK_UPDATE_LAST_NAME)
+                                            .setAddressLine(MOCK_UPDATE_ADDRESS);
         when(customerRepository.findByEmail(MOCK_EMAIL)).thenReturn(Optional.of(expectedCustomer));
         when(customerRepository.save(any())).thenReturn(expectedCustomer);
 

@@ -15,16 +15,14 @@ public class TestPizzaDataUtil {
     public static final String MOCK_UPDATE_NAME ="Hawaiian";
 
     public static Pizza createPizza(){
-        return Pizza.builder()
-                .name(MOCK_NAME)
-                .ingredients(new ArrayList<>())
-                .build();
+        return new Pizza()
+                .setName(MOCK_NAME)
+                .setIngredients(new ArrayList<>());
     }
 
     public static PizzaDto createPizzaDto(){
-        return PizzaDto.builder()
-                .name(MOCK_NAME)
-                .ingredients(new ArrayList<>())
-                .build();
+        return new PizzaDto()
+                .setName(MOCK_NAME)
+                .setIngredients(new ArrayList<>());
     }
 }

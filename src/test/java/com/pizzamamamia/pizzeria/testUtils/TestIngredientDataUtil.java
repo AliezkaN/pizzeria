@@ -20,16 +20,14 @@ public class TestIngredientDataUtil {
     public static final BigDecimal MOCK_UPDATE_PRICE = BigDecimal.valueOf(45);
 
     public static Ingredient createIngredient() {
-        return Ingredient.builder()
-                .name(MOCK_NAME)
-                .price(MOCK_PRICE)
-                .build();
+        return new Ingredient()
+                .setName(MOCK_NAME)
+                .setPrice(MOCK_PRICE);
     }
 
     public static IngredientDto createIngredientDto() {
-        return IngredientDto.builder()
-                .name(MOCK_NAME)
-                .price(MOCK_PRICE)
-                .build();
+        return new IngredientDto()
+                .setName(MOCK_NAME)
+                .setPrice(MOCK_PRICE);
     }
 }

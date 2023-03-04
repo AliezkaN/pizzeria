@@ -24,20 +24,18 @@ public class TestOrderDataUtil {
     }
 
     public static Order createOrder(){
-        return Order.builder()
-                .customer(TestCustomerDataUtil.createCustomer())
-                .pizza(MOCK_PIZZA)
-                .toppings(new ArrayList<>())
-                .status(MOCK_CREATED_STATUS)
-                .build();
+        return new Order()
+                .setCustomer(TestCustomerDataUtil.createCustomer())
+                .setPizza(MOCK_PIZZA)
+                .setToppings(new ArrayList<>())
+                .setStatus(MOCK_CREATED_STATUS);
     }
 
     public static OrderDto createOrderDto(){
-        return OrderDto.builder()
-                .pizza(MOCK_PIZZA_DTO)
-                .toppings(new ArrayList<>())
-                .status(MOCK_CREATED_STATUS)
-                .build();
+        return new OrderDto()
+                .setPizza(MOCK_PIZZA_DTO)
+                .setToppings(new ArrayList<>())
+                .setStatus(MOCK_CREATED_STATUS);
     }
 
 }

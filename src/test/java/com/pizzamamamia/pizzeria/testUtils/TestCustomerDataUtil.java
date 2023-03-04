@@ -20,31 +20,27 @@ public class TestCustomerDataUtil {
     public final static String MOCK_UPDATE_ADDRESS = "st. Horodotska, 222a";
 
     public static Customer createCustomer() {
-        return Customer.builder()
-                .firstName(MOCK_FIRST_NAME)
-                .lastName(MOCK_LAST_NAME)
-                .email(MOCK_EMAIL)
-                .phone(MOCK_PHONE)
-                .addressLine(MOCK_ADDRESS)
-                .build();
+        return new Customer()
+                .setFirstName(MOCK_FIRST_NAME)
+                .setLastName(MOCK_LAST_NAME)
+                .setEmail(MOCK_EMAIL)
+                .setPhone(MOCK_PHONE)
+                .setAddressLine(MOCK_ADDRESS);
     }
 
     public static CustomerDto createCustomerDto() {
-        return CustomerDto.builder()
-                .firstName(MOCK_FIRST_NAME)
-                .lastName(MOCK_LAST_NAME)
-                .email(MOCK_EMAIL)
-                .phone(MOCK_PHONE)
-                .addressLine(MOCK_ADDRESS)
-                .build();
+        return new CustomerDto()
+                .setFirstName(MOCK_FIRST_NAME)
+                .setLastName(MOCK_LAST_NAME)
+                .setEmail(MOCK_EMAIL)
+                .setPhone(MOCK_PHONE)
+                .setAddressLine(MOCK_ADDRESS);
     }
 
     public static CustomerDto createUpdatedCustomerDto() {
-        return CustomerDto.builder()
-                .firstName(MOCK_UPDATE_FIRST_NAME)
-                .lastName(MOCK_UPDATE_LAST_NAME)
-                .addressLine(MOCK_UPDATE_ADDRESS)
-                .build();
+        return new CustomerDto()
+                .setFirstName(MOCK_UPDATE_FIRST_NAME)
+                .setLastName(MOCK_UPDATE_LAST_NAME)
+                .setAddressLine(MOCK_UPDATE_ADDRESS);
     }
-
 }

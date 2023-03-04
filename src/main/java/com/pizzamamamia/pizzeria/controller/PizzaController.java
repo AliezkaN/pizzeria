@@ -1,7 +1,5 @@
 package com.pizzamamamia.pizzeria.controller;
 
-import com.pizzamamamia.pizzeria.controller.dto.CustomerDto;
-import com.pizzamamamia.pizzeria.controller.dto.IngredientDto;
 import com.pizzamamamia.pizzeria.controller.dto.PizzaDto;
 import com.pizzamamamia.pizzeria.controller.validation.group.OnCreate;
 import com.pizzamamamia.pizzeria.service.PizzaService;

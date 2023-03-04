@@ -1,9 +1,7 @@
 package com.pizzamamamia.pizzeria.service;
 
-import com.pizzamamamia.pizzeria.controller.dto.CustomerDto;
 import com.pizzamamamia.pizzeria.controller.dto.IngredientDto;
 import com.pizzamamamia.pizzeria.controller.dto.PizzaDto;
-import com.pizzamamamia.pizzeria.exception.IngredientNotFoundException;
 import com.pizzamamamia.pizzeria.exception.PizzaNotFoundException;
 import com.pizzamamamia.pizzeria.model.Ingredient;
 import com.pizzamamamia.pizzeria.model.Pizza;
@@ -96,9 +94,7 @@ public class PizzaServiceImplTest {
     void updatePizzaTest(){
         //given
         Pizza expectedPizza = TestPizzaDataUtil.createPizza();
-        PizzaDto updateBody = PizzaDto.builder()
-                .name(MOCK_UPDATE_NAME)
-                .build();
+        PizzaDto updateBody = new PizzaDto().setName(MOCK_UPDATE_NAME);
 
         when(pizzaRepository.findById(MOCK_ID)).thenReturn(Optional.of(expectedPizza));
         when(pizzaRepository.save(any())).thenReturn(expectedPizza);

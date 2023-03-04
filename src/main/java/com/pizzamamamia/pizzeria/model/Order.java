@@ -1,18 +1,19 @@
 package com.pizzamamamia.pizzeria.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Data
-@Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -26,7 +27,7 @@ public class Order {
     @ManyToOne
     private Pizza pizza;
     @ManyToMany
-    private List<Ingredient> toppings;
+    private List<Ingredient> toppings = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private Status status;
     @Transient
@@ -35,16 +36,12 @@ public class Order {
     private LocalDateTime modificationDateTime;
 
     public BigDecimal getPrice() {
-
         final BigDecimal pizzaPrice = pizza.getPrice();
-
-        if (Objects.isNull(toppings) || toppings.size() == 0){
-            return pizzaPrice;
-        }
-
-        return toppings.stream()
-                .map( ingredient -> ingredient.getPrice())
-                .reduce(BigDecimal.ZERO,BigDecimal::add)
+        return Objects.isNull(toppings) || toppings.size() == 0
+                ? pizzaPrice
+                : toppings.stream()
+                .map(Ingredient::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .add(pizzaPrice);
     }
 }

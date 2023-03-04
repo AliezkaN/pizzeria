@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pizzamamamia.pizzeria.controller.validation.Phone;
 import com.pizzamamamia.pizzeria.controller.validation.group.OnCreate;
 import com.pizzamamamia.pizzeria.controller.validation.group.OnUpdate;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +15,7 @@ import javax.validation.constraints.Null;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 
 @Data
-@Builder
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerDto {
     @JsonProperty(access = READ_ONLY)

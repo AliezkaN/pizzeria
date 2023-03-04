@@ -1,6 +1,7 @@
 package com.pizzamamamia.pizzeria.model;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -8,9 +9,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Setter
-@Getter
-@Builder
+@Data
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
